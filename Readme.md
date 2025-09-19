@@ -1,64 +1,70 @@
-# 📊 Dataset — Social Media Ads Campaign  
+# 📊 Dataset — The Complete Pokémon Dataset  
 
-Este conjunto de dados é **sintético** e foi criado para simular o desempenho de campanhas publicitárias em redes sociais (ex.: Facebook, Instagram). Ele é composto por **quatro tabelas principais**, todas interligadas por **chaves primárias e estrangeiras**.  
+Este conjunto de dados contém informações sobre **802 Pokémon** das sete primeiras gerações da franquia. Ele inclui estatísticas base, características físicas, classificações e atributos relacionados ao jogo. 
 
 ---
 
 ## 📂 Estrutura dos Dados  
 
-### 1. `users.csv`  
-Informações de usuários que interagiram com campanhas.  
-- **user_id** — identificador único do usuário  
-- **age** — idade do usuário  
-- **gender** — gênero (ex.: Male, Female, Other)  
-- **country** — país de origem  
-- **location** — localização mais detalhada (cidade/região)  
-- **interests** — interesses do usuário (ex.: esportes, música, tecnologia)  
+### 1. Identificação  
+- **name** — Nome em inglês do Pokémon  
+- **japanese_name** — Nome original em japonês  
+- **pokedex_number** — Número de registro no Pokédex Nacional  
+- **generation** — Geração em que o Pokémon foi introduzido (1 a 7)  
+- **is_legendary** — Indica se o Pokémon é lendário (1) ou não (0)  
 
 ---
 
-### 2. `campaigns.csv`  
-Dados das campanhas de marketing.  
-- **campaign_id** — identificador único da campanha  
-- **name** — nome da campanha  
-- **budget** — orçamento total da campanha  
-- **start_date** — data de início  
-- **end_date** — data de término  
+### 2. Tipos e Classificação  
+- **type1** — Tipo primário do Pokémon (ex.: Fire, Water, Grass)  
+- **type2** — Tipo secundário do Pokémon (pode estar vazio)  
+- **classification** — Classe do Pokémon, conforme descrito na Pokédex  
+- **abilities** — Lista de habilidades possíveis  
 
 ---
 
-### 3. `ads.csv`  
-Anúncios vinculados às campanhas.  
-- **ad_id** — identificador único do anúncio  
-- **campaign_id** — chave estrangeira para a campanha  
-- **content** — descrição ou tipo do criativo (ex.: imagem, vídeo, texto)  
-- **target_age** — faixa etária alvo  
-- **target_gender** — gênero alvo  
-- **target_interests** — interesses alvo  
+### 3. Atributos Físicos  
+- **height_m** — Altura em metros  
+- **weight_kg** — Peso em quilogramas  
+- **percentage_male** — Percentual da espécie que é macho (vazio se sem gênero)  
 
 ---
 
-### 4. `ad_events.csv`  
-Registro de interações dos usuários com os anúncios (funil de conversão).  
-- **event_id** — identificador único do evento  
-- **user_id** — chave estrangeira para `users`  
-- **ad_id** — chave estrangeira para `ads`  
-- **event_type** — tipo de evento (Impression, Click, Purchase, etc.)  
-- **timestamp** — momento em que ocorreu o evento  
+### 4. Reprodução e Crescimento  
+- **capture_rate** — Taxa de captura do Pokémon  
+- **base_egg_steps** — Número de passos para chocar o ovo  
+- **experience_growth** — Curva de crescimento de experiência  
+- **base_happiness** — Felicidade inicial do Pokémon  
 
 ---
 
-## 🔗 Relacionamentos Entre Tabelas  
-- `users` ↔ `ad_events` (via **user_id**)  
-- `ads` ↔ `ad_events` (via **ad_id**)  
-- `campaigns` ↔ `ads` (via **campaign_id**)  
+### 5. Estatísticas de Batalha  
+- **hp** — Pontos de vida base  
+- **attack** — Ataque base  
+- **defense** — Defesa base  
+- **sp_attack** — Ataque especial base  
+- **sp_defense** — Defesa especial base  
+- **speed** — Velocidade base  
+- **against_*** — Colunas que indicam a vulnerabilidade ou resistência contra cada tipo (ex.: `against_fire`, `against_water`, etc.), onde valores > 1 indicam fraqueza e < 1 resistência.  
 
 ---
 
-## 🚀 Possibilidades de Análise  
-- Explorar o **funil de conversão** (impressão → clique → compra)  
-- Avaliar quais campanhas e anúncios tiveram **melhor desempenho**  
-- Analisar o impacto de **demografia e interesses** nos resultados  
-- Calcular métricas como **CTR (Click-Through Rate)** e **Taxa de Conversão**  
+## 🚀 Objetivo do Trabalho  
+
+O objetivo deste projeto é aplicar o **ciclo completo de ciência de dados** sobre este dataset, explorando suas características, realizando testes estatísticos e construindo modelos de predição e classificação.  
 
 ---
+
+# ❓ Perguntas de Pesquisa  
+
+### Pergunta 1 — Classificação  
+**É possível prever se um Pokémon é lendário ou não com base em seus atributos (status base, altura, peso, tipos)?**  
+
+### Pergunta 2 — Regressão  
+**A taxa de captura de um Pokémon pode ser prevista a partir de suas estatísticas base (HP, defesa, ataque, etc.)?**  
+
+### Pergunta 3 — Testes de Hipótese  
+**Pokémons do tipo Dragão têm estatísticas de ataque significativamente maiores do que Pokémons de outros tipos?**  
+
+### Pergunta 4 — Taxa de Captura  
+**A taxa de captura de um Pokémon está relacionada às suas estatísticas base (como HP e defesa)?**  
